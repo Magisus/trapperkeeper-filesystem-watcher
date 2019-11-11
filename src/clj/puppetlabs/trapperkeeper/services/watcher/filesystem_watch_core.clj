@@ -66,6 +66,8 @@
   (add-watch-dir!
     [this dir]
     (let [watched-path (.toPath (fs/file dir))]
+      (log/warn (trs "USING RECURSIVE: {0}" @recursive))
+      (log/warn (trs "WATCHING PATH: {0}" watched-path))
       (if @recursive
         (DirWatchUtils/registerRecursive watch-service [watched-path])
         (DirWatchUtils/register watch-service watched-path))))
